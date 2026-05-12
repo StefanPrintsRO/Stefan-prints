@@ -146,6 +146,45 @@ If using a custom domain:
 
 2. Update GitHub Pages settings with your custom domain
 
+## Setting Up Email Notifications
+
+The custom print form uses [Formspree](https://formspree.io/) to send emails directly to your inbox.
+
+### Setup Instructions
+
+1. **Create a Formspree account**
+   - Go to [formspree.io](https://formspree.io/)
+   - Sign up for free (50 submissions/month on free plan)
+
+2. **Create a new form**
+   - Click "New Form" 
+   - Set the form name (e.g., "Custom Print Requests")
+   - Your forwarding email should be your Proton Mail address
+
+3. **Get your form ID**
+   - In your form settings, you'll see a URL like:
+     `https://formspree.io/f/xpwqvpqr`
+   - Copy the part after `/f/` (e.g., `xpwqvpqr`)
+
+4. **Update the code**
+   - Open `src/components/CustomPrints.jsx`
+   - Find this line:
+     ```javascript
+     const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+     ```
+   - Replace `YOUR_FORMSPREE_ID` with your actual form ID:
+     ```javascript
+     const response = await fetch('https://formspree.io/f/xpwqvpqr', {
+     ```
+
+5. **Redeploy**
+   ```bash
+   npm run build
+   npm run deploy
+   ```
+
+Now when someone submits the form, you'll receive an email with all the details!
+
 ## Customization
 
 ### Colors
