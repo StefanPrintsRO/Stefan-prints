@@ -33,19 +33,19 @@ function CustomPrints() {
     e.preventDefault()
     setStatus('submitting')
 
+    const message = `Custom Print Request\n\nName: ${formData.name}\nEmail: ${formData.email}\nColor: ${formData.color}\n\nDescription:\n${formData.description}\n\nNotes:\n${formData.notes || 'None'}`
+
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
         body: JSON.stringify({
+          access_key: 'e7b855da-a1d9-4b2c-afe5-b1c655f5ae59',
           name: formData.name,
           email: formData.email,
-          description: formData.description,
-          color: formData.color,
-          notes: formData.notes
+          message: message
         })
       })
 

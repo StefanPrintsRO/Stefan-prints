@@ -148,42 +148,21 @@ If using a custom domain:
 
 ## Setting Up Email Notifications
 
-The custom print form uses [Formspree](https://formspree.io/) to send emails directly to your inbox.
+The custom print form uses [Web3Forms](https://web3forms.com/) to send emails directly to your inbox.
 
-### Setup Instructions
+### Current Setup
+The form is already configured with Web3Forms. Submissions will be sent to your registered email.
 
-1. **Create a Formspree account**
-   - Go to [formspree.io](https://formspree.io/)
-   - Sign up for free (50 submissions/month on free plan)
+### How It Works
+When someone submits the custom print form, you'll receive an email containing:
+- Customer's name
+- Customer's email
+- Preferred color
+- Request description
+- Additional notes
 
-2. **Create a new form**
-   - Click "New Form" 
-   - Set the form name (e.g., "Custom Print Requests")
-   - Your forwarding email should be your Proton Mail address
-
-3. **Get your form ID**
-   - In your form settings, you'll see a URL like:
-     `https://formspree.io/f/xpwqvpqr`
-   - Copy the part after `/f/` (e.g., `xpwqvpqr`)
-
-4. **Update the code**
-   - Open `src/components/CustomPrints.jsx`
-   - Find this line:
-     ```javascript
-     const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
-     ```
-   - Replace `YOUR_FORMSPREE_ID` with your actual form ID:
-     ```javascript
-     const response = await fetch('https://formspree.io/f/xpwqvpqr', {
-     ```
-
-5. **Redeploy**
-   ```bash
-   npm run build
-   npm run deploy
-   ```
-
-Now when someone submits the form, you'll receive an email with all the details!
+### To Change Email
+If you need to update the access key, edit `src/components/CustomPrints.jsx` and update the `access_key` value.
 
 ## Customization
 
