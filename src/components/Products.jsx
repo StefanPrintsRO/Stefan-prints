@@ -23,24 +23,23 @@ function Products() {
 
   const products = [
     {
-      title: 'Custom Desk Organizer',
+      title: 'Desk Organizer',
       description: 'Keep your workspace tidy with this modular organizer featuring phone stand, pen holder, and cable management.',
-      price: '45',
+      price: '30',
       badge: 'Best Seller',
       icon: '🗄️'
     },
     {
-      title: 'Articulated Dragon Model',
+      title: 'Articulated Dragon',
       description: 'A beautifully designed articulated dragon with 20+ joints. Perfect as a collectible or fidget toy.',
-      price: '35',
+      price: '25',
       badge: 'Popular',
       icon: '🐉'
     },
     {
-      title: 'Premium Phone Stand',
+      title: 'Phone Stand',
       description: 'Ergonomic phone stand with adjustable angles. Features cable routing and non-slip base.',
-      price: '25',
-      badge: 'New',
+      price: '10',
       icon: '📱'
     },
     {
@@ -48,21 +47,14 @@ function Products() {
       description: 'Keep your sponge dry and organized. Water drainage design prevents bacteria growth.',
       price: '15',
       icon: '🧽'
-    },
-    {
-      title: 'Mechanical Keyboard Wrist Rest',
-      description: 'Ergonomic memory foam wrist rest with 3D printed ventilated shell for ultimate comfort.',
-      price: '30',
-      badge: 'Premium',
-      icon: '⌨️'
-    },
-    {
-      title: 'Cable Management Clips',
-      description: 'Set of 10 magnetic cable clips to keep your desk clean and cables organized.',
-      price: '12',
-      icon: '🔌'
     }
   ]
+
+  const handleRequest = (product) => {
+    const subject = encodeURIComponent(`Request: ${product.title}`)
+    const body = encodeURIComponent(`Hi! I'm interested in the ${product.title} (${product.price} RON).\n\nPlease let me know if it's available.\n\nThank you!`)
+    window.open(`mailto:stefanprints@protonmail.com?subject=${subject}&body=${body}`, '_blank')
+  }
 
   return (
     <section className="products section" id="products" ref={sectionRef}>
@@ -73,7 +65,7 @@ function Products() {
             Our <span className="section-title-highlight">Creations</span>
           </h2>
           <p className="section-description">
-            Explore our collection of carefully designed and printed products.
+            Premium PLA plastic prints. Cash only, +tax. Meeting required for shipping (coming soon).
           </p>
         </div>
 
@@ -93,15 +85,35 @@ function Products() {
               <div className="product-card-content">
                 <h3 className="product-card-title">{product.title}</h3>
                 <p className="product-card-description">{product.description}</p>
+                <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginBottom: '1rem' }}>
+                  Premium PLA plastic • Not all colors - if out of stock will be contacted
+                </p>
                 <div className="product-card-footer">
                   <div className="product-card-price">
                     {product.price} <span>RON</span>
                   </div>
-                  <button className="product-card-btn">Request Print</button>
+                  <button className="product-card-btn" onClick={() => handleRequest(product)}>
+                    Request
+                  </button>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div style={{ 
+          textAlign: 'center', 
+          marginTop: '3rem',
+          padding: '1.5rem',
+          background: 'var(--color-bg-card)',
+          borderRadius: 'var(--radius-lg)',
+          border: '1px solid rgba(255, 107, 53, 0.2)'
+        }}>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem' }}>
+            💳 Cash only • +tax included<br/>
+            📍 Meeting required for pickup<br/>
+            🚚 Shipping coming soon
+          </p>
         </div>
       </div>
     </section>
